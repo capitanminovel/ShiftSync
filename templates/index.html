@@ -13,9 +13,12 @@
 
   <header>
     <div class="logo"><span class="logo-green">Shift</span><span>Sync</span></div>
-    <div id="auth-status" class="auth-pill">
-      <span class="dot"></span>
-      <span id="auth-label">Checking...</span>
+    <div style="display:flex;align-items:center;gap:0.75rem;">
+      <div id="auth-status" class="auth-pill">
+        <span class="dot"></span>
+        <span id="auth-label">Checking...</span>
+      </div>
+      <a id="btn-logout" href="/logout" class="btn btn-ghost" style="display:none;font-size:0.75rem;">Log out</a>
     </div>
   </header>
 

@@ -32,6 +32,7 @@ const parseErrors    = document.getElementById("parse-errors");
 const btnReupload    = document.getElementById("btn-reupload");
 const btnSync        = document.getElementById("btn-sync");
 
+const btnLogout   = document.getElementById("btn-logout");
 const statCreated = document.getElementById("stat-created");
 const statSkipped = document.getElementById("stat-skipped");
 const statFailed  = document.getElementById("stat-failed");
@@ -60,11 +61,13 @@ async function checkAuth() {
       authPill.classList.add("logged-in");
       authPill.classList.remove("logged-out");
       authLabel.textContent = "Connected";
+      btnLogout.style.display = "inline-flex";
       showOnly(stepUpload);
     } else {
       authPill.classList.add("logged-out");
       authPill.classList.remove("logged-in");
       authLabel.textContent = "Not connected";
+      btnLogout.style.display = "none";
       showOnly(stepLogin);
     }
   } catch {

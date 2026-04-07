@@ -449,6 +449,15 @@ footer {
 .privacy-body strong { color: var(--text); }
 .privacy-body a { color: var(--accent); }
 
+.ics-note {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 0 !important;
+}
+.ics-note strong { color: var(--text); }
+
 .privacy-sm { margin-top: 1rem; }
 .privacy-sm .privacy-toggle-label { font-size: 0.68rem; padding: 0.45rem 0.85rem; }
 .privacy-sm .privacy-body p { font-size: 0.72rem; }

@@ -8,7 +8,9 @@ Routes:
 
 import os
 import tempfile
-from flask import Blueprint, request, jsonify, session
+import uuid
+from datetime import date, time as dtime
+from flask import Blueprint, request, jsonify, session, Response
 from auth import is_authenticated, load_credentials_from_session
 from csv_parser import parse_csv
 from csv_parser.xlsx_parser import parse_xlsx_schedule
@@ -130,3 +132,49 @@ def sync_to_calendar():
         return jsonify({"error": f"Sync failed: {exc}"}), 500
 
     return jsonify(result)
+
+
+@upload_bp.route("/download-ics", methods=["POST"])
+def download_ics():
+    shifts_raw = request.get_json(silent=True)
+    if not shifts_raw:
+        return jsonify({"error": "No shifts provided."}), 400
+
+    tz = Config.DEFAULT_TIMEZONE
+    lines = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//ShiftSync//EN",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+    ]
+
+    for s in shifts_raw:
+        shift_date = date.fromisoformat(s["date"])
+        start = dtime.fromisoformat(s["start_time"])
+        end   = dtime.fromisoformat(s["end_time"])
+
+        dtstart = shift_date.strftime("%Y%m%d") + "T" + start.strftime("%H%M%S")
+        dtend   = shift_date.strftime("%Y%m%d") + "T" + end.strftime("%H%M%S")
+        summary = f"Work Shift — {s['employee']}"
+        if s.get("role"):
+            summary += f" ({s['role']})"
+
+        lines += [
+            "BEGIN:VEVENT",
+            f"UID:{uuid.uuid4()}@shiftsync",
+            f"DTSTART;TZID={tz}:{dtstart}",
+            f"DTEND;TZID={tz}:{dtend}",
+            f"SUMMARY:{summary}",
+            f"DESCRIPTION:Synced by ShiftSync",
+            "END:VEVENT",
+        ]
+
+    lines.append("END:VCALENDAR")
+    ics_content = "\r\n".join(lines) + "\r\n"
+
+    return Response(
+        ics_content,
+        mimetype="text/calendar",
+        headers={"Content-Disposition": "attachment; filename=shifts.ics"},
+    )

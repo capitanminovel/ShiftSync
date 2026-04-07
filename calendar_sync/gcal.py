@@ -71,7 +71,7 @@ def shift_to_event(shift: dict) -> dict:
 def _build_summary(shift: dict) -> str:
     """Format a human-readable event title."""
     role = f" ({shift['role']})" if shift.get("role") else ""
-    return f"Shift — {shift['employee']}{role}"
+    return f"Work Shift — {shift['employee']}{role}"
 
 
 def _make_fingerprint(shift: dict) -> str:

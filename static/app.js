@@ -31,6 +31,7 @@ const previewBody    = document.getElementById("preview-body");
 const parseErrors    = document.getElementById("parse-errors");
 const btnReupload    = document.getElementById("btn-reupload");
 const btnSync        = document.getElementById("btn-sync");
+const btnIcs         = document.getElementById("btn-ics");
 
 const btnLogout   = document.getElementById("btn-logout");
 const statCreated = document.getElementById("stat-created");
@@ -173,6 +174,15 @@ async function syncShifts() {
     return;
   }
 
+  const filterInput = document.getElementById("employee-filter");
+  const filterValue = filterInput ? filterInput.value.trim() : "";
+  if (!filterValue) {
+    const confirmed = confirm(
+      `⚠️ No name filter is set — this will sync ALL ${filteredShifts.length} shifts to your calendar.\n\nAre you sure?`
+    );
+    if (!confirmed) return;
+  }
+
   btnSync.classList.add("loading");
   btnSync.textContent = "Syncing…";
 
@@ -262,6 +272,33 @@ btnReupload.addEventListener("click", () => {
 });
 
 btnSync.addEventListener("click", syncShifts);
+
+btnIcs.addEventListener("click", async () => {
+  if (!filteredShifts.length) { alert("No shifts to download."); return; }
+
+  const filterInput = document.getElementById("employee-filter");
+  const filterValue = filterInput ? filterInput.value.trim() : "";
+  if (!filterValue) {
+    const confirmed = confirm(
+      `⚠️ No name filter is set — this will download ALL ${filteredShifts.length} shifts.\n\nAre you sure?`
+    );
+    if (!confirmed) return;
+  }
+
+  const res = await fetch("/download-ics", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(filteredShifts),
+  });
+  if (!res.ok) { alert("Failed to generate .ics file."); return; }
+  const blob = await res.blob();
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "shifts.ics";
+  a.click();
+  URL.revokeObjectURL(url);
+});
 
 btnReset.addEventListener("click", () => {
   hideFeedback();

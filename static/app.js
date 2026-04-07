@@ -334,4 +334,11 @@ function formatDate(dateStr) {
 // ----------------------------------------------------------------
 // Boot
 // ----------------------------------------------------------------
+
+// Hide wake banner once page is responsive
+window.addEventListener("load", () => {
+  const banner = document.getElementById("wake-banner");
+  if (banner) banner.style.display = "none";
+});
+
 checkAuth();

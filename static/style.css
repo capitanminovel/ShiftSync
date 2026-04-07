@@ -22,6 +22,33 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ---- Wake banner ---- */
+.wake-banner {
+  width: 100%;
+  background: rgba(255,110,180,0.1);
+  border-bottom: 1px solid rgba(255,110,180,0.25);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.6rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 10;
+}
+.wake-banner button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.75rem;
+  padding: 0;
+  line-height: 1;
+}
+.wake-banner button:hover { color: var(--text); }
+
 html { font-size: 16px; }
 
 body {

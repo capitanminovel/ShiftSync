@@ -1,0 +1,22 @@
+# render.yaml — Render.com deployment config
+services:
+  - type: web
+    name: shift-sync
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true          # Render auto-generates a secure value
+      - key: GOOGLE_CLIENT_ID
+        sync: false                  # Set manually in Render dashboard
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_REDIRECT_URI
+        sync: false
+      - key: DEFAULT_TIMEZONE
+        value: America/Chicago
+      - key: CALENDAR_ID
+        value: primary
+      - key: OAUTHLIB_INSECURE_TRANSPORT
+        value: "0"                   # Must be 0 (HTTPS only) in production

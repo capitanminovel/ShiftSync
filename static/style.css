@@ -1,21 +1,20 @@
 /* --------------------------------------------------------
-   ShiftSync — Industrial-utilitarian aesthetic
+   ShiftSync — Black, pink, green & white palette
    Font: Syne (display) + DM Mono (data/code)
-   Palette: near-black bg, amber accent, clean off-whites
    -------------------------------------------------------- */
 
 :root {
-  --bg:          #0e0e0f;
-  --surface:     #161618;
-  --surface-2:   #1e1e21;
-  --border:      #2a2a2e;
-  --text:        #e8e8ec;
-  --text-muted:  #6b6b75;
-  --accent:      #f5a623;
-  --accent-dim:  rgba(245,166,35,0.12);
-  --green:       #3ecf8e;
-  --red:         #f87171;
-  --blue:        #60a5fa;
+  --bg:          #0a0a0a;
+  --surface:     #111111;
+  --surface-2:   #1a1a1a;
+  --border:      #2a2a2a;
+  --text:        #ffffff;
+  --text-muted:  #777777;
+  --accent:      #ff6eb4;
+  --accent-dim:  rgba(255,110,180,0.12);
+  --green:       #00e676;
+  --red:         #ff4444;
+  --blue:        #00e676;
   --radius:      10px;
   --font-display: 'Syne', sans-serif;
   --font-mono:    'DM Mono', monospace;
@@ -43,8 +42,8 @@ body {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(245,166,35,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245,166,35,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255,110,180,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,110,180,0.04) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
   z-index: 0;
@@ -69,6 +68,7 @@ header {
   color: var(--text);
 }
 .logo span { color: var(--accent); }
+.logo .logo-green { color: var(--green); }
 
 .auth-pill {
   display: flex;
@@ -107,6 +107,7 @@ main {
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
   border-radius: var(--radius);
   padding: 2rem;
   animation: slideUp 0.35s ease both;
@@ -125,7 +126,7 @@ main {
   letter-spacing: 0.12em;
   color: var(--accent);
   background: var(--accent-dim);
-  border: 1px solid rgba(245,166,35,0.25);
+  border: 1px solid rgba(255,110,180,0.25);
   display: inline-block;
   padding: 0.2rem 0.55rem;
   border-radius: 4px;
@@ -179,7 +180,7 @@ code {
   background: var(--accent);
   color: #0e0e0f;
 }
-.btn-primary:hover { background: #f7b84b; transform: translateY(-1px); }
+.btn-primary:hover { background: #ff90c8; transform: translateY(-1px); }
 .btn-primary:active { transform: translateY(0); }
 
 .btn-outline {
@@ -261,8 +262,8 @@ code {
   border: 1px solid;
 }
 .feedback.hidden { display: none; }
-.feedback.info  { background: rgba(96,165,250,0.08); border-color: rgba(96,165,250,0.3); color: var(--blue); }
-.feedback.error { background: rgba(248,113,113,0.08); border-color: rgba(248,113,113,0.3); color: var(--red); }
+.feedback.info  { background: rgba(0,230,118,0.08); border-color: rgba(0,230,118,0.3); color: var(--green); }
+.feedback.error { background: rgba(255,68,68,0.08); border-color: rgba(255,68,68,0.3); color: var(--red); }
 
 /* ---- Table ---- */
 .table-wrap {
@@ -284,7 +285,7 @@ thead th {
   padding: 0.6rem 0.85rem;
   text-align: left;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--green);
   letter-spacing: 0.05em;
   font-size: 0.7rem;
   text-transform: uppercase;

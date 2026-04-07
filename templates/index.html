@@ -12,7 +12,7 @@
   <div class="bg-grid"></div>
 
   <header>
-    <div class="logo">Shift<span>Sync</span></div>
+    <div class="logo"><span class="logo-green">Shift</span><span>Sync</span></div>
     <div id="auth-status" class="auth-pill">
       <span class="dot"></span>
       <span id="auth-label">Checking...</span>
@@ -22,7 +22,6 @@
   <main>
     <!-- Step 1: Login -->
     <section id="step-login" class="card hidden">
-      <div class="step-badge">01</div>
       <h2>Connect Google Calendar</h2>
       <p>Sign in with Google to grant ShiftSync permission to create calendar events on your behalf.</p>
       <a href="/login" class="btn btn-primary">
@@ -33,7 +32,6 @@
 
     <!-- Step 2: Upload -->
     <section id="step-upload" class="card hidden">
-      <div class="step-badge">02</div>
       <h2>Upload Schedule CSV</h2>
       <p>Accepts <code>.xlsx</code> (weekly grid format) or <code>.csv</code> with columns: <code>employee</code>, <code>date</code>, <code>start time</code>, <code>end time</code>.</p>
 
@@ -52,7 +50,6 @@
 
     <!-- Step 3: Preview -->
     <section id="step-preview" class="card hidden">
-      <div class="step-badge">03</div>
       <h2>Review Shifts</h2>
       <p id="preview-summary"></p>
 
@@ -82,7 +79,6 @@
 
     <!-- Step 4: Results -->
     <section id="step-results" class="card hidden">
-      <div class="step-badge">04</div>
       <h2>Sync Complete</h2>
 
       <div class="results-grid">

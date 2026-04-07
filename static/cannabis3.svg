@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Glowing neon style -->
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <path filter="url(#glow)" fill="#00e676" d="M32 58 Q31 48 30 42
+    Q18 44 10 34 Q20 32 28 36
+    Q20 22 16 10 Q26 18 30 30
+    Q29 20 24 8 Q32 16 32 28
+    Q32 16 40 8 Q35 20 34 30
+    Q38 18 48 10 Q44 22 36 36
+    Q44 32 54 34 Q46 44 34 42
+    Q33 48 32 58Z"/>
+  <line x1="32" y1="58" x2="32" y2="64" stroke="#00e676" stroke-width="2" stroke-linecap="round" filter="url(#glow)"/>
+</svg>

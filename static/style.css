@@ -406,3 +406,49 @@ footer {
 
 /* ---- Preview summary ---- */
 #preview-summary { margin-bottom: 1rem; }
+
+/* ---- Privacy dropdown ---- */
+.privacy-toggle {
+  margin-top: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+.privacy-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  color: var(--text-muted);
+  user-select: none;
+}
+.privacy-toggle-label:hover { color: var(--text); }
+.chevron {
+  margin-left: auto;
+  transition: transform 0.2s;
+}
+.privacy-toggle.open .chevron { transform: rotate(180deg); }
+.privacy-body {
+  display: none;
+  padding: 0.75rem 1rem 1rem;
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+  cursor: default;
+}
+.privacy-toggle.open .privacy-body { display: block; }
+.privacy-body p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
+}
+.privacy-body p:last-child { margin-bottom: 0; }
+.privacy-body strong { color: var(--text); }
+.privacy-body a { color: var(--accent); }
+
+.privacy-sm { margin-top: 1rem; }
+.privacy-sm .privacy-toggle-label { font-size: 0.68rem; padding: 0.45rem 0.85rem; }
+.privacy-sm .privacy-body p { font-size: 0.72rem; }
